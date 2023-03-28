@@ -5,29 +5,21 @@ using namespace std;
 
 int main()
 {
-	fstream plik("przyklad.txt");
+	fstream plik("instrukcje.txt");
 	string dane;
 	string wynik;
 	string alf;
 	
 	int poz = 0;
 
-	int znak = 65;  // ASC II
-	for (int i = 'A'; i <= 'Z'; i++)
-	{
-		if (i != 'Q' && i != 'V' && i != 'X')
-		{
-
-		znak = i;
-		alf += (char)znak;
-		//cout << i << "    " << (char)znak << endl;
-		}
-	}
-
 	while (getline(plik,dane))
 	{
 		char ins = dane[0];
 		char param = dane[dane.length() - 1];
+		char litera;
+		string funkcja = dane;
+		int kod;
+		string litera_gotowa;
 
 		cout << dane << '\n';
 		
@@ -41,19 +33,33 @@ int main()
 		}
 		else if (ins == 'U')
 		{
-			wynik = wynik.substr(0, wynik[wynik.length() - 1]);
+			wynik = wynik.erase(wynik.size() - 1, 1);
 		}
 		else if (ins == 'P')
 		{
-			poz = wynik.find('Z');
+			litera = funkcja[8];
+			kod = (int)litera;
+			
+			if (kod == 90)
+			{
+				kod = 65;
+			}
+			else
+			{
+				kod++;
+			}
+			
+			litera_gotowa = (char)kod;
 
-	
+			poz = wynik.find(litera);
+
+			wynik.replace(poz, 1, litera_gotowa);
+
 		}
 		cout << wynik << '\n';
 	}
-	cout << alf<<endl;
-	cout << alf.length()<<endl;
-	cout << poz<<endl;
+
+	cout << "\n\nDlugosc lancucha: " << wynik.length() << endl;
 	
 	plik.close();
 }
