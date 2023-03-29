@@ -8,7 +8,6 @@ int main()
 	fstream plik("instrukcje.txt");
 	string dane;
 	string wynik;
-	string alf;
 	
 	int poz = 0;
 
@@ -62,4 +61,6 @@ int main()
 	cout << "\n\nDlugosc lancucha: " << wynik.length() << endl;
 	
 	plik.close();
+
+	system("pause");
 }
