@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-	fstream plik("instrukcje.txt");
+	fstream plik("przyklad.txt");
 	string dane;
 	string wynik;
 	
@@ -19,6 +19,8 @@ int main()
 		string funkcja = dane;
 		int kod;
 		string litera_gotowa;
+
+			
 
 		cout << dane << '\n';
 		
@@ -56,11 +58,17 @@ int main()
 
 		}
 		cout << wynik << '\n';
+
+		//obliczanie najdluzszego ciagu instrukcji
+
+
+
+
+		//cout << ins << " ";
 	}
 
 	cout << "\n\nDlugosc lancucha: " << wynik.length() << endl;
 	
 	plik.close();
 
-	system("pause");
 }
