@@ -8,10 +8,13 @@ int main()
 	fstream plik("przyklad.txt");
 	string dane;
 	string wynik;
-	
+
 	int poz = 0;
 
-	while (getline(plik,dane))
+	int ile = 0;
+	int max = 0;
+
+	while (getline(plik, dane))
 	{
 		char ins = dane[0];
 		char param = dane[dane.length() - 1];
@@ -19,11 +22,11 @@ int main()
 		string funkcja = dane;
 		int kod;
 		string litera_gotowa;
-
-			
+		char polecenie = ' ';
+		char polecenie_max;
 
 		cout << dane << '\n';
-		
+
 		if (ins == 'D')
 		{
 			wynik += param;
@@ -40,7 +43,7 @@ int main()
 		{
 			litera = funkcja[8];
 			kod = (int)litera;
-			
+
 			if (kod == 90)
 			{
 				kod = 65;
@@ -49,7 +52,7 @@ int main()
 			{
 				kod++;
 			}
-			
+
 			litera_gotowa = (char)kod;
 
 			poz = wynik.find(litera);
@@ -59,16 +62,29 @@ int main()
 		}
 		cout << wynik << '\n';
 
-		//obliczanie najdluzszego ciagu instrukcji
+		//ZAD 4.2 obliczanie najdluzszego ciagu instrukcji
+
+		if (polecenie != dane[0])
+		{
+			if (ile > max)
+			{
+				max = ile;
+				polecenie_max = polecenie;
+				polecenie = dane[0];
+				ile = 0;
+			}
+			else
+			{
+				polecenie = dane[0];
+				ile++;
+			}
+		}
 
 
-
-
-		//cout << ins << " ";
 	}
 
 	cout << "\n\nDlugosc lancucha: " << wynik.length() << endl;
-	
+	cout << "\nNajdluzszy ciag takich samych instrukcji: " << ile << endl;
 	plik.close();
 
 }
